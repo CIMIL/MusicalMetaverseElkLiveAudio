@@ -19,14 +19,14 @@ public class OSCBlockGroup : MonoBehaviour
     {
     }
 
-    public void Send(int soundIndex, bool active)
+    public void Send(bool play, int note = 60)
     {
         //client.Send("/instruments", string.Format("({0}, {1}, {2})", context.Id.ToString() ,soundIndex.ToString(), active))
         
         var message = new OSCMessage("/keyboard_event/x_source");
-        message.AddValue(OSCValue.String(active ? "note_on" : "note_off"));
+        message.AddValue(OSCValue.String(play ? "note_on" : "note_off"));
         message.AddValue(OSCValue.Int(0));
-        message.AddValue(OSCValue.Int(60));
+        message.AddValue(OSCValue.Int(note));
         message.AddValue(OSCValue.Float(1.0f));
 
         transmitter.Send(message);

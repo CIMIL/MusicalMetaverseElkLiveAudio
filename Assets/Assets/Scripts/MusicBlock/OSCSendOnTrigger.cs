@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class OSCSendOnTrigger : MonoBehaviour
 {
+    [SerializeField]
+    private int note;
     private MusicBlock block;
     private OSCBlockGroup group;
 
@@ -17,7 +19,7 @@ public class OSCSendOnTrigger : MonoBehaviour
     {
         if (other.gameObject.transform.CompareTag(block.interactableTag))
         {
-            group.Send(block.soundIndex, true);
+            group.Send(true, note);
         }
     }
 
@@ -25,7 +27,7 @@ public class OSCSendOnTrigger : MonoBehaviour
     {
         if (other.gameObject.transform.CompareTag(block.interactableTag))
         {
-            group.Send(block.soundIndex, false);
+            group.Send(false, note);
         }
     }
 }
