@@ -19,8 +19,6 @@ Assets/Prefab/Piano Scale
 --XR origin
 ---Camera offeset
 ----Desktop Controller (Diseable this)
------#Gaze Interactor
------#Gaze Stabilize
   
 ## Logging:
 
@@ -30,6 +28,4 @@ Assets/Prefab/Piano Scale
 Logging starts by when scene starts.
 When you want to start the collection "Start Collection", otherwise "Stop Collection")
 
-
---> Prefabs/ Instruments blocks --> Block Log Emitter.cs
 
