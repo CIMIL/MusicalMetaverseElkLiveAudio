@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 3547549719100121179}
   - component: {fileID: 2967472847457258141}
   - component: {fileID: 1688460015729655443}
+  - component: {fileID: 8744208188232335004}
   m_Layer: 0
   m_Name: Standalone Block
   m_TagString: Music Block
@@ -426,5 +427,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 265808777a2ac44439cbfb576869497a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8744208188232335004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2317669768805261391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 458ebd60edc041d4891364425806e5fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
