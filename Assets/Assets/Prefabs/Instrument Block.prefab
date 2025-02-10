@@ -16,15 +16,7 @@ GameObject:
   - component: {fileID: 4272258196900456838}
   - component: {fileID: 4262101561285333193}
   - component: {fileID: 584098050045703202}
-<<<<<<< Updated upstream
-  - component: {fileID: -4802293351648568443}
-=======
-<<<<<<< HEAD
   - component: {fileID: -7675467187419928844}
-=======
-  - component: {fileID: -4802293351648568443}
->>>>>>> 1732141a17fe6878b8adc9faed3bd19d7811a3d6
->>>>>>> Stashed changes
   m_Layer: 0
   m_Name: Instrument Block
   m_TagString: Music Block
@@ -272,15 +264,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   note: 0
-<<<<<<< Updated upstream
---- !u!114 &-4802293351648568443
-=======
-<<<<<<< HEAD
 --- !u!114 &-7675467187419928844
-=======
---- !u!114 &-4802293351648568443
->>>>>>> 1732141a17fe6878b8adc9faed3bd19d7811a3d6
->>>>>>> Stashed changes
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
