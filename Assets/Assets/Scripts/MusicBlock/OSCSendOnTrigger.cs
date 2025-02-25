@@ -8,12 +8,12 @@ public class OSCSendOnTrigger : MonoBehaviour
     [SerializeField]
     private int note;
     private MusicBlock block;
-    private OSCBlockGroup group;
+    private BlockGroup group;
 
     private void Start()
     {
         block = GetComponent<MusicBlock>();
-        group = GetComponentInParent<OSCBlockGroup>();
+        group = GetComponentInParent<BlockGroup>();
     }
     private void OnTriggerEnter(UnityEngine.Collider other)
     {

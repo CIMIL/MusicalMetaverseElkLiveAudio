@@ -2,21 +2,25 @@ using extOSC;
 using Ubiq.Messaging;
 using UnityEngine;
 
-public class OSCBlockGroup : MonoBehaviour
+public class BlockGroup : MonoBehaviour
 {
 
     private OSCTransmitter transmitter;
-    private NetworkContext context;
 
     // Start is called before the first frame update
     void Start()
     {
-        context = NetworkScene.Register(this);
         transmitter = GetComponent<OSCTransmitter>();
     }
 
-    public void ProcessMessage(ReferenceCountedSceneGraphMessage message)
+    public void Disable()
     {
+        transmitter.enabled = false;
+        
+        var colliders = GetComponentsInChildren<BoxCollider>();
+        foreach (var boxCollider in colliders)
+           boxCollider.enabled = false;
+        
     }
 
     public void Send(bool play, int note = 60)

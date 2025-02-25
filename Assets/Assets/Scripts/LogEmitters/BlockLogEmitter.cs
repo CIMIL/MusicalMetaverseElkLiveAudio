@@ -9,13 +9,13 @@ using UnityEngine;
 
 public class BlockLogEmitter : MonoBehaviour
 {
-    private MusicBlock _block;
-    private LogEmitter _interactions;
+    private MusicBlock block;
+    private LogEmitter interactions;
 
     private void Start()
     {
-        _block = GetComponent<MusicBlock>();
-        _interactions = new ExperimentLogEmitter(this);
+        block = GetComponent<MusicBlock>();
+        interactions = new ExperimentLogEmitter(this);
     }
 
     private void OnTriggerEnter(UnityEngine.Collider other)
@@ -25,21 +25,21 @@ public class BlockLogEmitter : MonoBehaviour
          holding the drumstick. There's an edge case to be found here: a block can be triggered by a drumstick even
          if nobody is holding it, by moving the block itself. */
 
-        if (!other.gameObject.transform.CompareTag(_block.interactableTag)) return;
+        if (!other.gameObject.transform.CompareTag(block.interactableTag)) return;
         
         // local tells me if the drumstick that is playing a block is grabbed by you (local) or by someone else (remote)
         bool local = other.gameObject.GetComponentInParent<Drumstick>().grabbedBy == NetworkScene.Find(this).Id;
         EventData e = new EventData("Entered", local ? "Local" : "Remote");
-        _interactions.Log("Block Interaction", e);
+        interactions.Log("Block Interaction", e);
     }
 
     private void OnTriggerExit(UnityEngine.Collider other)
     {
-        if (!other.gameObject.transform.CompareTag(_block.interactableTag)) return;
+        if (!other.gameObject.transform.CompareTag(block.interactableTag)) return;
 
         bool local = other.gameObject.GetComponentInParent<Drumstick>().grabbedBy == NetworkScene.Find(this).Id;
         EventData e = new EventData("Exited", local ? "Local" : "Remote");
-        _interactions.Log("Block Interaction", e);
+        interactions.Log("Block Interaction", e);
     }
     private struct EventData
     {

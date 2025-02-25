@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using extOSC;
 using Ubiq.Messaging;
 using Ubiq.Rooms;
 using Ubiq.Spawning;
@@ -26,8 +27,8 @@ public class InstrumentSpawner : MonoBehaviour
             SyncedTransform st = go.GetComponent<SyncedTransform>();
             st.Start();
             st.SyncLastPosition();
-
-            go.GetComponent<OSCSendOnTrigger>().enabled = false;
+            
+            go.GetComponent<BlockGroup>().Disable();
         }
     }
     public void Spawn(int index)
