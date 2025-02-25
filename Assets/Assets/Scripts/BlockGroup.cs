@@ -15,7 +15,7 @@ public class BlockGroup : MonoBehaviour
 
     public void Disable()
     {
-        transmitter.enabled = false;
+        GetComponent<OSCTransmitter>().enabled = false;
         
         var colliders = GetComponentsInChildren<BoxCollider>();
         foreach (var boxCollider in colliders)
