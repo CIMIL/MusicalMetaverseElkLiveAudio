@@ -8,7 +8,6 @@ public class MusicBlock : MonoBehaviour
 
     public string interactableTag;
     public int soundIndex;
-    public bool activateLogging;
 
     private void Start()
     {
@@ -17,6 +16,7 @@ public class MusicBlock : MonoBehaviour
 
     private void OnTriggerEnter(UnityEngine.Collider other)
     {
+        Debug.Log(other.gameObject.tag);
         if (other.gameObject.transform.CompareTag(interactableTag))
         {
             GetComponent<AudioSource>().PlayOneShot(soundList.sounds[soundIndex]);

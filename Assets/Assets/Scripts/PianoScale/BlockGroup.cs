@@ -1,13 +1,22 @@
 using extOSC;
 using Ubiq.Messaging;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 public class BlockGroup : MonoBehaviour
 {
 
     private OSCTransmitter transmitter;
+    public int octave = 0;
+    public UnityEvent onOctaveChange;
 
     // Start is called before the first frame update
+    
+    private void Awake()
+    {
+        onOctaveChange = new UnityEvent();
+    }
     void Start()
     {
         transmitter = GetComponent<OSCTransmitter>();
@@ -34,5 +43,31 @@ public class BlockGroup : MonoBehaviour
         message.AddValue(OSCValue.Float(1.0f));
 
         transmitter.Send(message);
+    }
+    
+    public void NextOctave()
+    {
+        if (octave >= 10) return;
+        
+        octave++;
+        onOctaveChange.Invoke();
+    }
+
+    public void PreviousOctave()
+    {
+        if (octave <= 0) return;
+        
+        octave--;
+        onOctaveChange.Invoke();
+    }
+
+    public void NextInstrument()
+    {
+        
+    }
+
+    public void PreviousInstrument()
+    {
+        
     }
 }

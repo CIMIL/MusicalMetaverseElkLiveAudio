@@ -6,20 +6,19 @@ using UnityEngine;
 public class OSCSendOnTrigger : MonoBehaviour
 {
     [SerializeField]
-    private int note;
-    private MusicBlock block;
+    private InstrumentBlock block;
     private BlockGroup group;
 
     private void Start()
     {
-        block = GetComponent<MusicBlock>();
+        block = GetComponent<InstrumentBlock>();
         group = GetComponentInParent<BlockGroup>();
     }
     private void OnTriggerEnter(UnityEngine.Collider other)
     {
         if (other.gameObject.transform.CompareTag(block.interactableTag))
         {
-            group.Send(true, note);
+            group.Send(true, block.blockGroup.octave * 12 + block.sequenceNumber);
         }
     }
 
@@ -27,7 +26,7 @@ public class OSCSendOnTrigger : MonoBehaviour
     {
         if (other.gameObject.transform.CompareTag(block.interactableTag))
         {
-            group.Send(false, note);
+            group.Send(false, block.blockGroup.octave * 12 + block.sequenceNumber);
         }
     }
 }

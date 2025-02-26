@@ -5,10 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - Teleport
-  - Drumstick
   - Music Block
   - Instrument
   - Block Interactor
+  - Drumstick
   layers:
   - Default
   - TransparentFX

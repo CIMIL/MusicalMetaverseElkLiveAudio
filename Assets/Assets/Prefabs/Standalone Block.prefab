@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 3547549719100121179}
   - component: {fileID: 2967472847457258141}
   - component: {fileID: 1688460015729655443}
-  - component: {fileID: 8744208188232335004}
+  - component: {fileID: -8409155726740848080}
   m_Layer: 0
   m_Name: Standalone Block
   m_TagString: Music Block
@@ -404,7 +404,6 @@ MonoBehaviour:
   pressedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   interactableTag: Block Interactor
   soundIndex: 0
-  activateLogging: 0
 --- !u!114 &2967472847457258141
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -429,7 +428,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 265808777a2ac44439cbfb576869497a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8744208188232335004
+--- !u!114 &-8409155726740848080
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -438,6 +437,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2317669768805261391}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 458ebd60edc041d4891364425806e5fa, type: 3}
+  m_Script: {fileID: 11500000, guid: b1c38e75cad308646bb665565f79b580, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  color: {r: 0, g: 0, b: 0, a: 1}

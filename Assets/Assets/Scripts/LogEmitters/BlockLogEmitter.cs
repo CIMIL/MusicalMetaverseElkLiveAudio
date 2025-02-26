@@ -9,12 +9,12 @@ using UnityEngine;
 
 public class BlockLogEmitter : MonoBehaviour
 {
-    private MusicBlock block;
+    private InstrumentBlock block;
     private LogEmitter interactions;
 
     private void Start()
     {
-        block = GetComponent<MusicBlock>();
+        block = GetComponent<InstrumentBlock>();
         interactions = new ExperimentLogEmitter(this);
     }
 
