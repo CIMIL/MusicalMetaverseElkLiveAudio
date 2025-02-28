@@ -32,7 +32,7 @@ public class BlockGroup : MonoBehaviour
         
     }
 
-    public void Send(bool play, int note = 60)
+    public void Send(bool play, int note)
     {
         //client.Send("/instruments", string.Format("({0}, {1}, {2})", context.Id.ToString() ,soundIndex.ToString(), active))
         

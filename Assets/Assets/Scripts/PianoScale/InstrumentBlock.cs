@@ -14,14 +14,17 @@ public class InstrumentBlock : MonoBehaviour
     
     private Color baseColor;
     private Color pressedColor;
+    private int note;
     
     private void Start()
     {
+        note = blockGroup.octave * 11 + sequenceNumber;
         CalculateColor();
         ApplyColor(baseColor);
         
         blockGroup.onOctaveChange.AddListener(() =>
         {
+            note = blockGroup.octave * 11 + sequenceNumber;
             CalculateColor();
             ApplyColor(baseColor);
         });
@@ -32,6 +35,7 @@ public class InstrumentBlock : MonoBehaviour
         if (other.gameObject.transform.CompareTag(interactableTag))
         {
             ApplyColor(pressedColor);
+            blockGroup.Send(true, note);
         }
     }
 
@@ -40,19 +44,29 @@ public class InstrumentBlock : MonoBehaviour
         if (other.gameObject.transform.CompareTag(interactableTag))
         {
             ApplyColor(baseColor);
+            blockGroup.Send(false, note);
         }
     }
 
     private void CalculateColor()
     {
-        float octaveColorSize = 1f / 11f;
-        float octaveOffset = octaveColorSize * blockGroup.octave;
-        float h = octaveOffset + (octaveColorSize / 12f) * sequenceNumber;
+        float noteColorOffset = 1f / (12f * 11f);
         
-        baseColor = Color.HSVToRGB(h, 1f, 1f);
-        pressedColor = Color.HSVToRGB(h, 1f, 0.75f);
+        float h = noteColorOffset * note;
+        float v = 1f;
+        float vPressed = 0.75f;
+        
+        if (sequenceNumber <= 4 && sequenceNumber % 2 == 1 || 
+            sequenceNumber > 4 && sequenceNumber % 2 == 0)
+        {
+            v = 0f;
+            vPressed = 0.25f;
+        }
+        
+        baseColor = Color.HSVToRGB(h, 0.5f, v);
+        pressedColor = Color.HSVToRGB(h, 0.5f, vPressed);
     }
-
+    
     private void ApplyColor(Color color)
     {
         MaterialPropertyBlock propertyBlock = new MaterialPropertyBlock();
