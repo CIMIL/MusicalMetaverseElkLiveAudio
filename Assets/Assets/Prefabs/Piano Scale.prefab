@@ -389,8 +389,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7469619153833643130}
-        m_TargetAssemblyTypeName: BlockGroup, Assembly-CSharp
+      - m_Target: {fileID: 4371264260256531584}
+        m_TargetAssemblyTypeName: OctaveSelector, Assembly-CSharp
         m_MethodName: NextOctave
         m_Mode: 1
         m_Arguments:
@@ -654,10 +654,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d98a46b3cf12ab4498e2582dcbbc96e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  octave: 0
-  octaveChanged:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &-7974567618122567571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -679,7 +675,7 @@ MonoBehaviour:
   _localReceiver: {fileID: 0}
   _localHost: 192.168.1.249
   _localPort: 7000
-  _remoteHost: 192.168.181.91
+  _remoteHost: 192.168.163.179
   _remotePort: 24024
   _useBundle: 0
 --- !u!1 &3229635561007853819
@@ -1012,8 +1008,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7469619153833643130}
-        m_TargetAssemblyTypeName: BlockGroup, Assembly-CSharp
+      - m_Target: {fileID: 4371264260256531584}
+        m_TargetAssemblyTypeName: OctaveSelector, Assembly-CSharp
         m_MethodName: PreviousOctave
         m_Mode: 1
         m_Arguments:
@@ -1036,6 +1032,7 @@ GameObject:
   - component: {fileID: 2837205353997372820}
   - component: {fileID: 9114278156249319914}
   - component: {fileID: 6262423623725615999}
+  - component: {fileID: 4371264260256531584}
   m_Layer: 0
   m_Name: Octave Selector
   m_TagString: Untagged
@@ -1127,6 +1124,19 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &4371264260256531584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5099038016645548051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7c6e6033f734c49a1d279c6e44dfb4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  octave: 4
 --- !u!1 &5326391728521341955
 GameObject:
   m_ObjectHideFlags: 0
@@ -1381,7 +1391,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 813628966623954004}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6791789481819626878}
+        m_TargetAssemblyTypeName: PresetSelector, Assembly-CSharp
+        m_MethodName: NextPreset
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6243992175586673232
 GameObject:
   m_ObjectHideFlags: 0
@@ -1528,8 +1550,9 @@ GameObject:
   - component: {fileID: 5324243337708471712}
   - component: {fileID: 6074021792077656071}
   - component: {fileID: 4569919006085081303}
+  - component: {fileID: 6791789481819626878}
   m_Layer: 0
-  m_Name: Instrument Selector
+  m_Name: Preset Selector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1621,6 +1644,21 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &6791789481819626878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8034693415093190321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66c0687b785742f6a1ef120d277e9e7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  presets: {fileID: 11400000, guid: cd14dd0074988a643b734fec89d9face, type: 2}
+  blockGroup: {fileID: 7469619153833643130}
+  panelText: {fileID: 7400696889102412205}
 --- !u!1 &8212925177630307855
 GameObject:
   m_ObjectHideFlags: 0
@@ -1741,7 +1779,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1206142256306187058}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6791789481819626878}
+        m_TargetAssemblyTypeName: PresetSelector, Assembly-CSharp
+        m_MethodName: PreviousPreset
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &475334190319916040
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1755,6 +1805,11 @@ PrefabInstance:
       propertyPath: blockGroup
       value: 
       objectReference: {fileID: 7469619153833643130}
+    - target: {fileID: 625155129355952846, guid: fa7fddb2cfa14c44496023782c1687c3,
+        type: 3}
+      propertyPath: octaveSelector
+      value: 
+      objectReference: {fileID: 4371264260256531584}
     - target: {fileID: 625155129355952846, guid: fa7fddb2cfa14c44496023782c1687c3,
         type: 3}
       propertyPath: sequenceNumber
@@ -1841,6 +1896,11 @@ PrefabInstance:
       objectReference: {fileID: 7469619153833643130}
     - target: {fileID: 625155129355952846, guid: fa7fddb2cfa14c44496023782c1687c3,
         type: 3}
+      propertyPath: octaveSelector
+      value: 
+      objectReference: {fileID: 4371264260256531584}
+    - target: {fileID: 625155129355952846, guid: fa7fddb2cfa14c44496023782c1687c3,
+        type: 3}
       propertyPath: sequenceNumber
       value: 3
       objectReference: {fileID: 0}
@@ -1923,6 +1983,11 @@ PrefabInstance:
       propertyPath: blockGroup
       value: 
       objectReference: {fileID: 7469619153833643130}
+    - target: {fileID: 625155129355952846, guid: fa7fddb2cfa14c44496023782c1687c3,
+        type: 3}
+      propertyPath: octaveSelector
+      value: 
+      objectReference: {fileID: 4371264260256531584}
     - target: {fileID: 625155129355952846, guid: fa7fddb2cfa14c44496023782c1687c3,
         type: 3}
       propertyPath: sequenceNumber
@@ -2009,6 +2074,11 @@ PrefabInstance:
       objectReference: {fileID: 7469619153833643130}
     - target: {fileID: 625155129355952846, guid: fa7fddb2cfa14c44496023782c1687c3,
         type: 3}
+      propertyPath: octaveSelector
+      value: 
+      objectReference: {fileID: 4371264260256531584}
+    - target: {fileID: 625155129355952846, guid: fa7fddb2cfa14c44496023782c1687c3,
+        type: 3}
       propertyPath: sequenceNumber
       value: 2
       objectReference: {fileID: 0}
@@ -2093,6 +2163,11 @@ PrefabInstance:
       objectReference: {fileID: 7469619153833643130}
     - target: {fileID: 625155129355952846, guid: fa7fddb2cfa14c44496023782c1687c3,
         type: 3}
+      propertyPath: octaveSelector
+      value: 
+      objectReference: {fileID: 4371264260256531584}
+    - target: {fileID: 625155129355952846, guid: fa7fddb2cfa14c44496023782c1687c3,
+        type: 3}
       propertyPath: sequenceNumber
       value: 11
       objectReference: {fileID: 0}
@@ -2175,6 +2250,11 @@ PrefabInstance:
       propertyPath: blockGroup
       value: 
       objectReference: {fileID: 7469619153833643130}
+    - target: {fileID: 625155129355952846, guid: fa7fddb2cfa14c44496023782c1687c3,
+        type: 3}
+      propertyPath: octaveSelector
+      value: 
+      objectReference: {fileID: 4371264260256531584}
     - target: {fileID: 2317669768805261391, guid: fa7fddb2cfa14c44496023782c1687c3,
         type: 3}
       propertyPath: m_Name
@@ -2254,6 +2334,11 @@ PrefabInstance:
       propertyPath: blockGroup
       value: 
       objectReference: {fileID: 7469619153833643130}
+    - target: {fileID: 625155129355952846, guid: fa7fddb2cfa14c44496023782c1687c3,
+        type: 3}
+      propertyPath: octaveSelector
+      value: 
+      objectReference: {fileID: 4371264260256531584}
     - target: {fileID: 625155129355952846, guid: fa7fddb2cfa14c44496023782c1687c3,
         type: 3}
       propertyPath: sequenceNumber
@@ -2340,6 +2425,11 @@ PrefabInstance:
       objectReference: {fileID: 7469619153833643130}
     - target: {fileID: 625155129355952846, guid: fa7fddb2cfa14c44496023782c1687c3,
         type: 3}
+      propertyPath: octaveSelector
+      value: 
+      objectReference: {fileID: 4371264260256531584}
+    - target: {fileID: 625155129355952846, guid: fa7fddb2cfa14c44496023782c1687c3,
+        type: 3}
       propertyPath: sequenceNumber
       value: 9
       objectReference: {fileID: 0}
@@ -2422,6 +2512,11 @@ PrefabInstance:
       propertyPath: blockGroup
       value: 
       objectReference: {fileID: 7469619153833643130}
+    - target: {fileID: 625155129355952846, guid: fa7fddb2cfa14c44496023782c1687c3,
+        type: 3}
+      propertyPath: octaveSelector
+      value: 
+      objectReference: {fileID: 4371264260256531584}
     - target: {fileID: 625155129355952846, guid: fa7fddb2cfa14c44496023782c1687c3,
         type: 3}
       propertyPath: sequenceNumber
@@ -2508,6 +2603,11 @@ PrefabInstance:
       objectReference: {fileID: 7469619153833643130}
     - target: {fileID: 625155129355952846, guid: fa7fddb2cfa14c44496023782c1687c3,
         type: 3}
+      propertyPath: octaveSelector
+      value: 
+      objectReference: {fileID: 4371264260256531584}
+    - target: {fileID: 625155129355952846, guid: fa7fddb2cfa14c44496023782c1687c3,
+        type: 3}
       propertyPath: sequenceNumber
       value: 5
       objectReference: {fileID: 0}
@@ -2592,6 +2692,11 @@ PrefabInstance:
       objectReference: {fileID: 7469619153833643130}
     - target: {fileID: 625155129355952846, guid: fa7fddb2cfa14c44496023782c1687c3,
         type: 3}
+      propertyPath: octaveSelector
+      value: 
+      objectReference: {fileID: 4371264260256531584}
+    - target: {fileID: 625155129355952846, guid: fa7fddb2cfa14c44496023782c1687c3,
+        type: 3}
       propertyPath: sequenceNumber
       value: 7
       objectReference: {fileID: 0}
@@ -2674,6 +2779,11 @@ PrefabInstance:
       propertyPath: blockGroup
       value: 
       objectReference: {fileID: 7469619153833643130}
+    - target: {fileID: 625155129355952846, guid: fa7fddb2cfa14c44496023782c1687c3,
+        type: 3}
+      propertyPath: octaveSelector
+      value: 
+      objectReference: {fileID: 4371264260256531584}
     - target: {fileID: 625155129355952846, guid: fa7fddb2cfa14c44496023782c1687c3,
         type: 3}
       propertyPath: sequenceNumber

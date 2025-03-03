@@ -1,3 +1,5 @@
+using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class InstrumentBlock : MonoBehaviour
@@ -7,27 +9,28 @@ public class InstrumentBlock : MonoBehaviour
     private static readonly int GlowColor = Shader.PropertyToID("_Glow_Color");
     private static readonly int IntersectionPower = Shader.PropertyToID("_Intersection_Power");
 
-    public Material cubeMaterial;
     public string interactableTag;
-    public int sequenceNumber;
-    public BlockGroup blockGroup;
     
+    [SerializeField]
+    private Material cubeMaterial;
+    
+    [SerializeField]
+    private int sequenceNumber;
+    
+    [SerializeField]
+    private BlockGroup blockGroup;
+    
+    [SerializeField]
+    private OctaveSelector octaveSelector;
+    
+    private int Note;
     private Color baseColor;
     private Color pressedColor;
-    private int note;
     
     private void Start()
     {
-        note = blockGroup.octave * 11 + sequenceNumber;
-        CalculateColor();
-        ApplyColor(baseColor);
-        
-        blockGroup.onOctaveChange.AddListener(() =>
-        {
-            note = blockGroup.octave * 11 + sequenceNumber;
-            CalculateColor();
-            ApplyColor(baseColor);
-        });
+        SetOctave();
+        octaveSelector.OnOctaveChange.AddListener(SetOctave);
     }
 
     private void OnTriggerEnter(UnityEngine.Collider other)
@@ -35,7 +38,7 @@ public class InstrumentBlock : MonoBehaviour
         if (other.gameObject.transform.CompareTag(interactableTag))
         {
             ApplyColor(pressedColor);
-            blockGroup.Send(true, note);
+            blockGroup.SendNote(true, Note);
         }
     }
 
@@ -44,7 +47,7 @@ public class InstrumentBlock : MonoBehaviour
         if (other.gameObject.transform.CompareTag(interactableTag))
         {
             ApplyColor(baseColor);
-            blockGroup.Send(false, note);
+            blockGroup.SendNote(false, Note);
         }
     }
 
@@ -52,7 +55,7 @@ public class InstrumentBlock : MonoBehaviour
     {
         float noteColorOffset = 1f / (12f * 11f);
         
-        float h = noteColorOffset * note;
+        float h = noteColorOffset * Note;
         float v = 1f;
         float vPressed = 0.75f;
         
@@ -72,6 +75,13 @@ public class InstrumentBlock : MonoBehaviour
         MaterialPropertyBlock propertyBlock = new MaterialPropertyBlock();
         propertyBlock.SetColor(BaseColor, color);
         GetComponent<MeshRenderer>().SetPropertyBlock(propertyBlock);
+    }
+
+    private void SetOctave()
+    {
+        Note = octaveSelector.octave * 11 + sequenceNumber;
+        CalculateColor();
+        ApplyColor(baseColor);
     }
     
 }

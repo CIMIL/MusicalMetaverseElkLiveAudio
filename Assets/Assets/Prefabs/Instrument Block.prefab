@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 2124238868738339067}
   - component: {fileID: 5053344746741038543}
   - component: {fileID: 625155129355952846}
-  - component: {fileID: 584098050045703202}
   - component: {fileID: -7675467187419928844}
   m_Layer: 0
   m_Name: Instrument Block
@@ -150,19 +149,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cubeMaterial: {fileID: 2100000, guid: 8f0e82872f75ffa499d8effad44108af, type: 2}
   interactableTag: Block Interactor
---- !u!114 &584098050045703202
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2317669768805261391}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5473a64e75c6496448b75af4b0ab0329, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  note: 48
+  sequenceNumber: 0
+  blockGroup: {fileID: 0}
+  octaveSelector: {fileID: 0}
 --- !u!114 &-7675467187419928844
 MonoBehaviour:
   m_ObjectHideFlags: 0
