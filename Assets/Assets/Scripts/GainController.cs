@@ -26,7 +26,6 @@ public class GainController : MonoBehaviour
         var message = new OSCMessage("/parameter/x_cimil_track_send_own/gain");
         message.AddValue(OSCValue.Float(yourGainSlider.value));
         transmitter.Send(message);
-        Debug.Log(yourGainSlider.value);
     }
 
     public void SetOthersGain()
@@ -35,6 +34,5 @@ public class GainController : MonoBehaviour
         var message = new OSCMessage("/parameter/master_send_own/gain");
         message.AddValue(OSCValue.Float(othersGainSlider.value));
         transmitter.Send(message);
-        Debug.Log(othersGainSlider.value);
     }
 }

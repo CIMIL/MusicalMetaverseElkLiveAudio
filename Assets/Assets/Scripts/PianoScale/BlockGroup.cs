@@ -24,6 +24,9 @@ public class BlockGroup : MonoBehaviour
         foreach (var boxCollider in colliders)
            boxCollider.enabled = false;
         
+        GetComponentInChildren<OctaveSelector>().gameObject.SetActive(false);
+        GetComponentInChildren<PresetSelector>().gameObject.SetActive(false);
+        
     }
 
     public void SendNote(bool play, int note)
@@ -34,6 +37,14 @@ public class BlockGroup : MonoBehaviour
         message.AddValue(OSCValue.Int(note));
         message.AddValue(OSCValue.Float(1.0f));
 
+        transmitter.Send(message);
+    }
+
+    public void SetVibrato(float normalizedValue)
+    {
+        var message = new OSCMessage("/parameter/x_Mda_jx10/Vibrato_");
+        message.AddValue(OSCValue.Float(normalizedValue));
+        
         transmitter.Send(message);
     }
 

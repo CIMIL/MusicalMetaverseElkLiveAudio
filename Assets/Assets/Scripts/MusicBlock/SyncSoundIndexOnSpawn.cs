@@ -1,4 +1,3 @@
-using MessageTypes;
 using System.Collections;
 using System.Collections.Generic;
 using Ubiq.Messaging;
@@ -6,7 +5,7 @@ using UnityEngine;
 
 public class SyncSoundIndexOnSpawn : MonoBehaviour
 {
-    public NetworkContext context;
+    private NetworkContext context;
     private MusicBlock block;
 
     public void Start()
@@ -17,20 +16,21 @@ public class SyncSoundIndexOnSpawn : MonoBehaviour
 
     public void SyncSound()
     {
-        context.SendJson(new SoundData()
+        context.SendJson(new Message()
         {
-            index = block.soundIndex
+            Index = block.soundIndex
         });
     }
 
     public void ProcessMessage(ReferenceCountedSceneGraphMessage message)
     {
-        Message m = message.FromJson<Message>();
-
-        if (m.messageType == MessageType.SoundData)
-        {
-            SoundData content = message.FromJson<SoundData>();
-            block.SetSoundIndex(content.index);
-        }
+            Message content = message.FromJson<Message>();
+            block.SetSoundIndex(content.Index);
+    }
+    
+    private class Message
+    {
+        public int Index;
     }
 }
+

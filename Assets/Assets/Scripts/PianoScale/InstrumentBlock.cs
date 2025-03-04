@@ -23,9 +23,11 @@ public class InstrumentBlock : MonoBehaviour
     [SerializeField]
     private OctaveSelector octaveSelector;
     
-    private int Note;
+    private int note;
     private Color baseColor;
     private Color pressedColor;
+    private bool pressed = false;
+    private SyncedTransform drumstickTransform;
     
     private void Start()
     {
@@ -33,12 +35,28 @@ public class InstrumentBlock : MonoBehaviour
         octaveSelector.OnOctaveChange.AddListener(SetOctave);
     }
 
+    private void Update()
+    {
+        if (pressed)
+        {
+            float velocity = drumstickTransform.Velocity;
+            float mappedVelocity = Mathf.InverseLerp(0f, 3f, velocity);
+            float lerpedEdgeThreshold = Mathf.Lerp(0.02f, 0.25f, mappedVelocity);
+            
+            blockGroup.SetVibrato(mappedVelocity);
+            ApplyColor(pressedColor, lerpedEdgeThreshold);
+        }
+    }
+
     private void OnTriggerEnter(UnityEngine.Collider other)
     {
         if (other.gameObject.transform.CompareTag(interactableTag))
         {
+            pressed = true;
+            drumstickTransform = other.gameObject.GetComponentInParent<SyncedTransform>();
+            
             ApplyColor(pressedColor);
-            blockGroup.SendNote(true, Note);
+            blockGroup.SendNote(true, note);
         }
     }
 
@@ -46,8 +64,10 @@ public class InstrumentBlock : MonoBehaviour
     {
         if (other.gameObject.transform.CompareTag(interactableTag))
         {
+            pressed = false;
             ApplyColor(baseColor);
-            blockGroup.SendNote(false, Note);
+            blockGroup.SetVibrato(0f);
+            blockGroup.SendNote(false, note);
         }
     }
 
@@ -55,7 +75,7 @@ public class InstrumentBlock : MonoBehaviour
     {
         float noteColorOffset = 1f / (12f * 11f);
         
-        float h = noteColorOffset * Note;
+        float h = noteColorOffset * note;
         float v = 1f;
         float vPressed = 0.75f;
         
@@ -70,16 +90,17 @@ public class InstrumentBlock : MonoBehaviour
         pressedColor = Color.HSVToRGB(h, 0.5f, vPressed);
     }
     
-    private void ApplyColor(Color color)
+    private void ApplyColor(Color color, float edgeThreshold = 0.02f)
     {
         MaterialPropertyBlock propertyBlock = new MaterialPropertyBlock();
         propertyBlock.SetColor(BaseColor, color);
+        propertyBlock.SetFloat(EdgeThreshold, edgeThreshold);
         GetComponent<MeshRenderer>().SetPropertyBlock(propertyBlock);
     }
 
     private void SetOctave()
     {
-        Note = octaveSelector.octave * 11 + sequenceNumber;
+        note = octaveSelector.octave * 11 + sequenceNumber;
         CalculateColor();
         ApplyColor(baseColor);
     }

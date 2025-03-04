@@ -7,17 +7,17 @@ using UnityEngine.XR.Interaction.Toolkit;
 public class Drumstick : MonoBehaviour
 {
     
-    private XRGrabInteractable _grabInteractable;
+    private XRGrabInteractable grabInteractable;
     public NetworkId grabbedBy;
-    private NetworkContext _context;
+    private NetworkContext context;
     
     public void Start()
     {
-        _grabInteractable = GetComponent<XRGrabInteractable>();
-        _grabInteractable.selectEntered.AddListener(OnSelectEntered);
-        _grabInteractable.selectExited.AddListener(OnSelectExited);
+        grabInteractable = GetComponent<XRGrabInteractable>();
+        grabInteractable.selectEntered.AddListener(OnSelectEntered);
+        grabInteractable.selectExited.AddListener(OnSelectExited);
         
-        _context = NetworkScene.Register(this);
+        context = NetworkScene.Register(this);
     }
     
     private struct Message
@@ -39,7 +39,7 @@ public class Drumstick : MonoBehaviour
 
     public void SendUpdateMessage()
     {
-        _context.SendJson(new Message()
+        context.SendJson(new Message()
         {
             GrabbedBy = this.grabbedBy
         });
