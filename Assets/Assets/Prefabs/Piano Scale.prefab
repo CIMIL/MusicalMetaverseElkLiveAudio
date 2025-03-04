@@ -414,7 +414,6 @@ GameObject:
   - component: {fileID: 8651001130783895892}
   - component: {fileID: 6722757753100137756}
   - component: {fileID: 7469619153833643130}
-  - component: {fileID: -7974567618122567571}
   m_Layer: 0
   m_Name: Piano Scale
   m_TagString: Instrument
@@ -447,8 +446,8 @@ Transform:
   - {fileID: 7149154293324025503}
   - {fileID: 3559376844156972512}
   - {fileID: 5605297265914425445}
-  - {fileID: 5015623475523743861}
   - {fileID: 1408023369837805427}
+  - {fileID: 5015623475523743861}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &3565700898269587931
@@ -654,30 +653,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d98a46b3cf12ab4498e2582dcbbc96e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &-7974567618122567571
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2441878115936072151}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 464088183d2a1484ab8fb64e356c9f5c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _autoConnect: 1
-  _closeOnPause: 0
-  _mapBundle: {fileID: 0}
-  _workInEditor: 0
-  _localHostMode: 0
-  _localPortMode: 2
-  _localReceiver: {fileID: 0}
-  _localHost: 192.168.1.249
-  _localPort: 7000
-  _remoteHost: 192.168.163.179
-  _remotePort: 24024
-  _useBundle: 0
 --- !u!1 &3229635561007853819
 GameObject:
   m_ObjectHideFlags: 0

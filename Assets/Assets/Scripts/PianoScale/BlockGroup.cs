@@ -8,11 +8,12 @@ using UnityEngine.Serialization;
 
 public class BlockGroup : MonoBehaviour
 {
+    [SerializeField]
     private OSCTransmitter transmitter;
     
     void Start()
     {
-        transmitter = GetComponent<OSCTransmitter>();
+        transmitter = FindObjectOfType<OSCTransmitter>();
     }
 
     public void Disable()

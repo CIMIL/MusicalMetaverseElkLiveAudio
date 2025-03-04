@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Presets
   m_EditorClassIdentifier: 
   instruments:
-  - Echo Pad [SA]
+  - Echo Pad
   - Solid Backing
   - Monosynth
   - Synth Brass
