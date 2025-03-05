@@ -14,6 +14,7 @@ public class BlockGroup : MonoBehaviour
     void Start()
     {
         transmitter = FindObjectOfType<OSCTransmitter>();
+        
     }
 
     public void Disable()

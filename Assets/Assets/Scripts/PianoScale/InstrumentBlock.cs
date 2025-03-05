@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -6,46 +8,31 @@ public class InstrumentBlock : MonoBehaviour
 {
     private static readonly int BaseColor = Shader.PropertyToID("_Base_Color");
     private static readonly int EdgeThreshold = Shader.PropertyToID("_Edge_Threshold");
-    private static readonly int GlowColor = Shader.PropertyToID("_Glow_Color");
-    private static readonly int IntersectionPower = Shader.PropertyToID("_Intersection_Power");
 
     public string interactableTag;
     
-    [SerializeField]
-    private Material cubeMaterial;
-    
-    [SerializeField]
-    private int sequenceNumber;
-    
-    [SerializeField]
-    private BlockGroup blockGroup;
-    
-    [SerializeField]
-    private OctaveSelector octaveSelector;
+    [SerializeField] private Material cubeMaterial;
+    [SerializeField] private int sequenceNumber;
+    [SerializeField] private BlockGroup blockGroup;
+    [SerializeField] private OctaveSelector octaveSelector;
+    [SerializeField] private float rateOfChange;
+    [SerializeField] private float zeroVelocity;
+    [SerializeField] private float oneVelocity;
+    [SerializeField] private float zeroEdgeThreshold;
+    [SerializeField] private float oneEdgeThreshold;
     
     private int note;
     private Color baseColor;
     private Color pressedColor;
+    private MeshRenderer meshRenderer;
     private bool pressed = false;
-    private SyncedTransform drumstickTransform;
     
     private void Start()
     {
+        meshRenderer = GetComponent<MeshRenderer>();
+        
         SetOctave();
         octaveSelector.OnOctaveChange.AddListener(SetOctave);
-    }
-
-    private void Update()
-    {
-        if (pressed)
-        {
-            float velocity = drumstickTransform.Velocity;
-            float mappedVelocity = Mathf.InverseLerp(0f, 3f, velocity);
-            float lerpedEdgeThreshold = Mathf.Lerp(0.02f, 0.25f, mappedVelocity);
-            
-            blockGroup.SetVibrato(mappedVelocity);
-            ApplyColor(pressedColor, lerpedEdgeThreshold);
-        }
     }
 
     private void OnTriggerEnter(UnityEngine.Collider other)
@@ -53,9 +40,7 @@ public class InstrumentBlock : MonoBehaviour
         if (other.gameObject.transform.CompareTag(interactableTag))
         {
             pressed = true;
-            drumstickTransform = other.gameObject.GetComponentInParent<SyncedTransform>();
-            
-            ApplyColor(pressedColor);
+            StartCoroutine(SmoothVibrato(other.gameObject));
             blockGroup.SendNote(true, note);
         }
     }
@@ -65,19 +50,47 @@ public class InstrumentBlock : MonoBehaviour
         if (other.gameObject.transform.CompareTag(interactableTag))
         {
             pressed = false;
-            ApplyColor(baseColor);
+            ApplyColor(baseColor, zeroEdgeThreshold);
             blockGroup.SetVibrato(0f);
             blockGroup.SendNote(false, note);
+        }
+    }
+    
+    private IEnumerator SmoothVibrato(GameObject drumstick)
+    {
+        var drumstickTransform = drumstick.GetComponentInParent<SyncedTransform>();
+        var smoothedVelocity = 0f;
+
+        while (pressed)
+        {
+            var mappedVelocity = Mathf.InverseLerp(zeroVelocity, oneVelocity, drumstickTransform.Velocity);
+            var deltaVelocity = mappedVelocity - smoothedVelocity;
+
+            if (Math.Abs(deltaVelocity) > rateOfChange * Time.deltaTime)
+            {
+                var nextVelocity = smoothedVelocity + rateOfChange * Time.deltaTime * Math.Sign(deltaVelocity);
+                smoothedVelocity = Math.Clamp(nextVelocity, 0f, 1f);
+            }
+            else
+            {
+                smoothedVelocity = Math.Clamp(smoothedVelocity + deltaVelocity, 0f, 1f);
+            }
+            
+            var edgeThreshold = Mathf.Lerp(zeroEdgeThreshold, oneEdgeThreshold, smoothedVelocity);
+            blockGroup.SetVibrato(smoothedVelocity);
+            ApplyColor(pressedColor, edgeThreshold);
+            
+            yield return null;
         }
     }
 
     private void CalculateColor()
     {
-        float noteColorOffset = 1f / (12f * 11f);
+        var noteColorOffset = 1f / (12f * 11f);
         
-        float h = noteColorOffset * note;
-        float v = 1f;
-        float vPressed = 0.75f;
+        var h = noteColorOffset * note;
+        var v = 1f;
+        var vPressed = 0.75f;
         
         if (sequenceNumber <= 4 && sequenceNumber % 2 == 1 || 
             sequenceNumber > 4 && sequenceNumber % 2 == 0)
@@ -90,19 +103,19 @@ public class InstrumentBlock : MonoBehaviour
         pressedColor = Color.HSVToRGB(h, 0.5f, vPressed);
     }
     
-    private void ApplyColor(Color color, float edgeThreshold = 0.02f)
+    private void ApplyColor(Color color, float edgeThreshold)
     {
-        MaterialPropertyBlock propertyBlock = new MaterialPropertyBlock();
+        var propertyBlock = new MaterialPropertyBlock();
         propertyBlock.SetColor(BaseColor, color);
         propertyBlock.SetFloat(EdgeThreshold, edgeThreshold);
-        GetComponent<MeshRenderer>().SetPropertyBlock(propertyBlock);
+        meshRenderer.SetPropertyBlock(propertyBlock);
     }
 
     private void SetOctave()
     {
         note = octaveSelector.octave * 11 + sequenceNumber;
         CalculateColor();
-        ApplyColor(baseColor);
+        ApplyColor(baseColor, zeroEdgeThreshold);
     }
     
 }
