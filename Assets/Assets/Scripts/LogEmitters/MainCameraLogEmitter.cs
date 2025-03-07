@@ -9,19 +9,17 @@ using UnityEngine;
 
 public class MainCameraLogEmitter : MonoBehaviour
 {
-    private MusicBlock _block;
-    private LogEmitter _logEmitter;
+    private LogEmitter logEmitter;
 
     private void Start()
     {
-        _block = GetComponent<MusicBlock>();
-        _logEmitter = new InfoLogEmitter(this);
+        logEmitter = new InfoLogEmitter(this);
         
         InvokeRepeating(nameof(_logVector), 0.0f, 0.3f);
     }
 
     private void _logVector()
     {
-        _logEmitter.Log("Head vector", this.transform.forward.ToString());
+        logEmitter.Log("Camera direction and position vectors", transform.forward, transform.position );
     }
 }

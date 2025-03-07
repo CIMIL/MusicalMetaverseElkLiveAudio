@@ -34,4 +34,9 @@ public class PresetSelector : MonoBehaviour
         panelText.text = presets.Get(presetIndex).Item1;
         blockGroup.SetPreset(presets.Get(presetIndex).Item2);
     }
+
+    public string GetActivePreset()
+    {
+        return presets.Get(presetIndex).Item1;
+    }
 }

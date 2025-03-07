@@ -10,6 +10,7 @@ public class InstrumentBlock : MonoBehaviour
     private static readonly int EdgeThreshold = Shader.PropertyToID("_Edge_Threshold");
 
     public string interactableTag;
+    public int note {get; private set;}
     
     [SerializeField] private Material cubeMaterial;
     [SerializeField] private int sequenceNumber;
@@ -21,7 +22,6 @@ public class InstrumentBlock : MonoBehaviour
     [SerializeField] private float zeroEdgeThreshold;
     [SerializeField] private float oneEdgeThreshold;
     
-    private int note;
     private Color baseColor;
     private Color pressedColor;
     private MeshRenderer meshRenderer;

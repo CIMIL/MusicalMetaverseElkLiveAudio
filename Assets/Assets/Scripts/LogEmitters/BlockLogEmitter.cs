@@ -9,8 +9,10 @@ using UnityEngine;
 
 public class BlockLogEmitter : MonoBehaviour
 {
+    [SerializeField] private PresetSelector presetSelector;
     private InstrumentBlock block;
     private LogEmitter interactions;
+    
 
     private void Start()
     {
@@ -28,28 +30,40 @@ public class BlockLogEmitter : MonoBehaviour
         if (!other.gameObject.transform.CompareTag(block.interactableTag)) return;
         
         // local tells me if the drumstick that is playing a block is grabbed by you (local) or by someone else (remote)
-        bool local = other.gameObject.GetComponentInParent<Drumstick>().grabbedBy == NetworkScene.Find(this).Id;
-        EventData e = new EventData("Entered", local ? "Local" : "Remote");
-        interactions.Log("Block Interaction", e);
+        var local = other.gameObject.GetComponentInParent<Drumstick>().grabbedBy == NetworkScene.Find(this).Id;
+        var e = new EventData("Entered",
+            local ? "Local" : "Remote",
+            block.note,
+            presetSelector.GetActivePreset());
+        
+        interactions?.Log("Block Interaction", e);
     }
 
     private void OnTriggerExit(UnityEngine.Collider other)
     {
         if (!other.gameObject.transform.CompareTag(block.interactableTag)) return;
 
-        bool local = other.gameObject.GetComponentInParent<Drumstick>().grabbedBy == NetworkScene.Find(this).Id;
-        EventData e = new EventData("Exited", local ? "Local" : "Remote");
-        interactions.Log("Block Interaction", e);
+        var local = other.gameObject.GetComponentInParent<Drumstick>().grabbedBy == NetworkScene.Find(this).Id;
+        var e = new EventData("Exited", 
+            local ? "Local" : "Remote",
+            block.note,
+            presetSelector.GetActivePreset());
+        
+        interactions?.Log("Block Interaction", e);
     }
     private struct EventData
     {
         public string type;
         public string network;
+        public int note;
+        public string preset;
 
-        public EventData(string type, string network)
+        public EventData(string type, string network, int note, string preset)
         {
             this.type = type;
             this.network = network;
+            this.note = note;
+            this.preset = preset;
         }
     }
 
