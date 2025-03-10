@@ -9,11 +9,12 @@ TagManager:
   - Instrument
   - Block Interactor
   - Drumstick
+  - Player Head
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Barriers
   - Water
   - UI
   - 
