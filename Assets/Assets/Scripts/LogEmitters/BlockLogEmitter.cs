@@ -53,17 +53,17 @@ public class BlockLogEmitter : MonoBehaviour
     }
     private struct EventData
     {
-        public string type;
-        public string network;
-        public int note;
-        public string preset;
+        public string Type;
+        public string Network;
+        public int Note;
+        public string Preset;
 
         public EventData(string type, string network, int note, string preset)
         {
-            this.type = type;
-            this.network = network;
-            this.note = note;
-            this.preset = preset;
+            this.Type = type;
+            this.Network = network;
+            this.Note = note;
+            this.Preset = preset;
         }
     }
 
