@@ -13,7 +13,7 @@ using Avatar = Ubiq.Avatars.Avatar;
 public class MainCameraLogEmitter : MonoBehaviour
 {
 
-    [SerializeField] private AvatarManager avatarManager;
+    public AvatarManager avatarManager;
     [SerializeField] private string headTag = "Player Head";
     [SerializeField] private int raycastDistance = 25;
     
@@ -28,6 +28,7 @@ public class MainCameraLogEmitter : MonoBehaviour
         InvokeRepeating(nameof(LogVector), 0.0f, 0.3f);
         context = NetworkScene.Register(this);
         myNetworkSceneId = NetworkScene.Find(this).Id;
+        avatarManager = GameObject.Find("Avatar Manager").GetComponent<AvatarManager>();
     }
     
     private void Update()
@@ -36,12 +37,12 @@ public class MainCameraLogEmitter : MonoBehaviour
             hit.collider.gameObject.CompareTag(headTag))
         {
             if (lookingAt) return;
-            
             lookingAt = true;
+            
             context.SendJson(new Message()
             {
                 sourceId = myNetworkSceneId,
-                avatarId = hit.collider.gameObject.GetComponent<Avatar>().NetworkId,
+                avatarId = hit.collider.gameObject.transform.parent.GetComponentInParent<Avatar>().NetworkId,
                 targetId = NetworkId.Null
             });
         }
@@ -49,17 +50,17 @@ public class MainCameraLogEmitter : MonoBehaviour
         {
             lookingAt = false;
             lookingAtNetworkId = NetworkId.Null;
-            logEmitter.Log("Stopped looking at", lookingAtNetworkId);
+            logEmitter.Log("Stopped looking at ", lookingAtNetworkId);
         }
     }
     
     public void ProcessMessage(ReferenceCountedSceneGraphMessage message)
     {
         var m = message.FromJson<Message>();
-
+        
         if (m.sourceId == myNetworkSceneId)
         {
-            logEmitter.Log("Is looking at", m.targetId);
+            logEmitter.Log("Is looking at ", m.targetId);
             lookingAtNetworkId = m.targetId;
         } else if (m.avatarId == avatarManager.LocalAvatar.NetworkId)
         {
