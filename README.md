@@ -24,18 +24,17 @@ Inside `Info_log` files you will find `Main Camera` events and `Looking At` even
   - ticks: the timestamp of the event
   - peer: the NetworkSceneId of the Peer that emitted the event
   - event: the name of the event (`Main Camera`)
-  - arg1: Camera forward vector, it indicates where the player is looking
-  - arg2: Camera position vector, it indicates the position inside the playable space
+  - arg1: a JSON object containing the details of the event
+    - forward: Camera forward vector, it indicates where the direction the player is facing
+    - position: Camera position vector, it indicates the player's camera position inside the playable space
+
 - `Looking At`: reports when one player is looking at another. Its columns are:
   - ticks: the timestamp of the event
   - peer: the NetworkSceneId of the Peer that emitted the event
   - event: the name of the event (`Looking At`)
-  - arg1: the type of the event, can either be `Started`, `Stopped` or `Resolved`. Based on the type of the event, the parameters change:
-    - `Started` and `Stopped`: the player is looking at someone, but we don't yet know who, the Peer ID of the remote peer's avatar will be resolved separately
-      - arg2: the `Event Counter` for that Looking At event
-    - `Resolved`: the remote peer has answered our request and resolved his Peer ID.
-      - arg2: the `Event Counter` for the Looking At event that has been resolved. When processing this log, use the `Peer, Event Counter` pair to link `Started` and `Stopped` events with the Remote Peer ID belonging to that avatar.
-      - arg3: The remote Peer's NetworkSceneID
+  - arg1: a JSON object containing the details of the event
+    - type: the type of the event, can either be `Started` or `Stopped`
+    - target: the id of the peer the player is looking at
 
 ### Experiment logs
 Inside the `Experiment_log` files you can find interactions with musical instruments, called `Block Interaction` events. Its columns are:
@@ -43,7 +42,7 @@ Inside the `Experiment_log` files you can find interactions with musical instrum
 - ticks: the timestamp of the event
 - peer: the NetworkSceneId of the Peer that emitted the event
 - event: the name of the event (`Block Interaction`)
-- arg1: a JSON object containing various fields
+- arg1: a JSON object containing the details of the event
   - type: either `Entered` or `Exited`
   - network: either `Local` or `Remote`, describes if the interaction emitted by you or by someone else. Useful to measure latency.
   - note: the MIDI note of the block that has been played
