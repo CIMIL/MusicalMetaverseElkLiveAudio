@@ -44,7 +44,6 @@ Inside the `Experiment_log` files you can find interactions with musical instrum
 - event: the name of the event (`Block Interaction`)
 - arg1: a JSON object containing the details of the event
   - type: either `Entered` or `Exited`
-  - network: either `Local` or `Remote`, describes if the interaction emitted by you or by someone else. Useful to measure latency.
   - note: the MIDI note of the block that has been played
   - preset: the Elk preset currently selected for that instrument
 

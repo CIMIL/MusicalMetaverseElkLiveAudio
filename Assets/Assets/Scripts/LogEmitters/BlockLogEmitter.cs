@@ -32,7 +32,6 @@ public class BlockLogEmitter : MonoBehaviour
         // local tells me if the drumstick that is playing a block is grabbed by you (local) or by someone else (remote)
         var local = other.gameObject.GetComponentInParent<Drumstick>().grabbedBy == NetworkScene.Find(this).Id;
         var e = new EventData("Entered",
-            local ? "Local" : "Remote",
             block.note,
             presetSelector.GetActivePreset());
         
@@ -45,7 +44,6 @@ public class BlockLogEmitter : MonoBehaviour
 
         var local = other.gameObject.GetComponentInParent<Drumstick>().grabbedBy == NetworkScene.Find(this).Id;
         var e = new EventData("Exited", 
-            local ? "Local" : "Remote",
             block.note,
             presetSelector.GetActivePreset());
         
@@ -54,14 +52,12 @@ public class BlockLogEmitter : MonoBehaviour
     private struct EventData
     {
         public string Type;
-        public string Network;
         public int Note;
         public string Preset;
 
-        public EventData(string type, string network, int note, string preset)
+        public EventData(string type, int note, string preset)
         {
             this.Type = type;
-            this.Network = network;
             this.Note = note;
             this.Preset = preset;
         }
