@@ -21,7 +21,7 @@ public class MainCameraLogEmitter : MonoBehaviour
     private LogEmitter logEmitter;
     
     private bool lookingAt;
-    private NetworkId lookingAtPeerId;
+    private string lookingAtPeerId;
     
     private struct MainCameraEvent
     {
@@ -38,9 +38,9 @@ public class MainCameraLogEmitter : MonoBehaviour
     private struct LookingAtEvent
     {
         public string Type;
-        public NetworkId PeerId;
+        public string PeerId;
 
-        public LookingAtEvent(string type, NetworkId peerId)
+        public LookingAtEvent(string type, string peerId)
         {
             this.Type = type;
             this.PeerId = peerId;
@@ -61,7 +61,7 @@ public class MainCameraLogEmitter : MonoBehaviour
             if (lookingAt) return;
             
             lookingAt = true;
-            lookingAtPeerId = hit.collider.GetComponentInParent<Avatar>().Peer.networkId;
+            lookingAtPeerId = hit.collider.GetComponentInParent<Avatar>().Peer.networkId.ToString();
             logEmitter.Log("Looking At", new LookingAtEvent("Started", lookingAtPeerId));
             
         }
