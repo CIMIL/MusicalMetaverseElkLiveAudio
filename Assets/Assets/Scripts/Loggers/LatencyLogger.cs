@@ -23,7 +23,6 @@ public class LatencyLogger : MonoBehaviour
             measurement.time,
             measurement.frameTime)
         );
-        Debug.Log(measurement.source + " - " + measurement.destination);
     }
 
     private struct LogData
