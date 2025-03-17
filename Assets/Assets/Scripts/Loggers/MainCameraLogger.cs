@@ -7,7 +7,6 @@ using Ubiq.Avatars;
 using Ubiq.Logging;
 using Ubiq.Messaging;
 using Ubiq.Rooms;
-using UnityEditor.Searcher;
 using UnityEngine;
 using UnityEngine.Events;
 using Avatar = Ubiq.Avatars.Avatar;

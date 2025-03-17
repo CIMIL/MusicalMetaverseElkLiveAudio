@@ -5,12 +5,9 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/SampleScene.unity
-    guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
-    path: Assets/Assets/Scenes/Waves_Old.unity
-    guid: 2d418e70648c46d409de56865be141ba
+    path: Assets/Assets/Scenes/Waves.unity
+    guid: e8559195991c0a64da8678a904883ba7
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 326739868ca1d3e48b799a75d1b5e9eb,
       type: 2}
