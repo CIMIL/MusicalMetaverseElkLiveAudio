@@ -25,6 +25,7 @@ public class InstrumentSpawner : MonoBehaviour
         if (go.CompareTag("Instrument") && origin == NetworkSpawnOrigin.Local)
         {
             userInstrument = go;
+            
             SyncedTransform st = go.GetComponent<SyncedTransform>();
             st.Start();
             spawnPoint.GetPositionAndRotation(out var pos, out var rot);
@@ -45,10 +46,14 @@ public class InstrumentSpawner : MonoBehaviour
         {
             if (userInstrument)
             {
-                manager.Despawn(userInstrument);
+                SyncedTransform st = userInstrument.GetComponent<SyncedTransform>();
+                spawnPoint.GetPositionAndRotation(out var pos, out var rot);
+                st.transform.SetPositionAndRotation(pos, rot);
             }
-
-            manager.SpawnWithRoomScope(manager.catalogue.prefabs[index]);
+            else
+            {
+                manager.SpawnWithRoomScope(manager.catalogue.prefabs[index]);
+            }
             
         }
     }
