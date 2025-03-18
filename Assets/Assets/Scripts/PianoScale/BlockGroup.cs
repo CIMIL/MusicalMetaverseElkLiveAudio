@@ -14,13 +14,10 @@ public class BlockGroup : MonoBehaviour
     void Start()
     {
         transmitter = FindObjectOfType<OSCTransmitter>();
-        
     }
 
     public void Disable()
     {
-        GetComponent<OSCTransmitter>().enabled = false;
-        
         var colliders = GetComponentsInChildren<BoxCollider>();
         foreach (var boxCollider in colliders)
            boxCollider.enabled = false;

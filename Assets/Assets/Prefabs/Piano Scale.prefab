@@ -389,7 +389,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4371264260256531584}
+      - m_Target: {fileID: 2559948647001073849}
         m_TargetAssemblyTypeName: OctaveSelector, Assembly-CSharp
         m_MethodName: NextOctave
         m_Mode: 1
@@ -446,8 +446,8 @@ Transform:
   - {fileID: 7149154293324025503}
   - {fileID: 3559376844156972512}
   - {fileID: 5605297265914425445}
-  - {fileID: 1408023369837805427}
-  - {fileID: 5015623475523743861}
+  - {fileID: 3406901027451871306}
+  - {fileID: 5703047122973246767}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &3565700898269587931
@@ -984,7 +984,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4371264260256531584}
+      - m_Target: {fileID: 2559948647001073849}
         m_TargetAssemblyTypeName: OctaveSelector, Assembly-CSharp
         m_MethodName: PreviousOctave
         m_Mode: 1
@@ -996,6 +996,95 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!1 &3762594868423437795
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5703047122973246767}
+  - component: {fileID: 3432936855588386333}
+  - component: {fileID: 2992959242350500911}
+  - component: {fileID: 3123988434302647535}
+  m_Layer: 0
+  m_Name: Preset Selector
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5703047122973246767
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3762594868423437795}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5015623475523743861}
+  m_Father: {fileID: 3836856346700705918}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &3432936855588386333
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3762594868423437795}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &2992959242350500911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3762594868423437795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c80ce0b2488aa4ea590211c61fc992, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3123988434302647535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3762594868423437795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66c0687b785742f6a1ef120d277e9e7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  presets: {fileID: 11400000, guid: cd14dd0074988a643b734fec89d9face, type: 2}
+  blockGroup: {fileID: 7469619153833643130}
+  panelText: {fileID: 7400696889102412205}
 --- !u!1 &5099038016645548051
 GameObject:
   m_ObjectHideFlags: 0
@@ -1008,9 +1097,8 @@ GameObject:
   - component: {fileID: 2837205353997372820}
   - component: {fileID: 9114278156249319914}
   - component: {fileID: 6262423623725615999}
-  - component: {fileID: 4371264260256531584}
   m_Layer: 0
-  m_Name: Octave Selector
+  m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1023,14 +1111,14 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5099038016645548051}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -0.075}
   m_LocalScale: {x: 0.003, y: 0.0030000003, z: 0.0029999996}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8197411023513998374}
   - {fileID: 674959806226295771}
-  m_Father: {fileID: 3836856346700705918}
+  m_Father: {fileID: 3406901027451871306}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1100,19 +1188,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &4371264260256531584
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5099038016645548051}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7c6e6033f734c49a1d279c6e44dfb4f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  octave: 4
 --- !u!1 &5326391728521341955
 GameObject:
   m_ObjectHideFlags: 0
@@ -1247,6 +1322,93 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &5688841473636481138
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3406901027451871306}
+  - component: {fileID: 6575252089176525324}
+  - component: {fileID: 3101978065233721608}
+  - component: {fileID: 2559948647001073849}
+  m_Layer: 0
+  m_Name: Octave Selector
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3406901027451871306
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5688841473636481138}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1408023369837805427}
+  m_Father: {fileID: 3836856346700705918}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &6575252089176525324
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5688841473636481138}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &3101978065233721608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5688841473636481138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c80ce0b2488aa4ea590211c61fc992, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2559948647001073849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5688841473636481138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7c6e6033f734c49a1d279c6e44dfb4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  octave: 4
 --- !u!1 &6173931671813724816
 GameObject:
   m_ObjectHideFlags: 0
@@ -1368,7 +1530,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6791789481819626878}
+      - m_Target: {fileID: 3123988434302647535}
         m_TargetAssemblyTypeName: PresetSelector, Assembly-CSharp
         m_MethodName: NextPreset
         m_Mode: 1
@@ -1526,9 +1688,8 @@ GameObject:
   - component: {fileID: 5324243337708471712}
   - component: {fileID: 6074021792077656071}
   - component: {fileID: 4569919006085081303}
-  - component: {fileID: 6791789481819626878}
   m_Layer: 0
-  m_Name: Preset Selector
+  m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1543,14 +1704,14 @@ RectTransform:
   m_GameObject: {fileID: 8034693415093190321}
   m_LocalRotation: {x: 0.2588186, y: -0, z: -0, w: 0.965926}
   m_LocalPosition: {x: 0, y: 0, z: -0.15}
-  m_LocalScale: {x: 0.003, y: 0.0030000003, z: 0.0029999996}
+  m_LocalScale: {x: 0.003, y: 0.0030000003, z: 0.0029999998}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 880272838728961402}
   - {fileID: 5117919704235446503}
   - {fileID: 984048255652206455}
   - {fileID: 8079162833708155885}
-  m_Father: {fileID: 3836856346700705918}
+  m_Father: {fileID: 5703047122973246767}
   m_LocalEulerAnglesHint: {x: 30, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1620,21 +1781,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &6791789481819626878
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8034693415093190321}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66c0687b785742f6a1ef120d277e9e7a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  presets: {fileID: 11400000, guid: cd14dd0074988a643b734fec89d9face, type: 2}
-  blockGroup: {fileID: 7469619153833643130}
-  panelText: {fileID: 7400696889102412205}
 --- !u!1 &8212925177630307855
 GameObject:
   m_ObjectHideFlags: 0
@@ -1756,7 +1902,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6791789481819626878}
+      - m_Target: {fileID: 3123988434302647535}
         m_TargetAssemblyTypeName: PresetSelector, Assembly-CSharp
         m_MethodName: PreviousPreset
         m_Mode: 1
@@ -1780,7 +1926,7 @@ PrefabInstance:
         type: 3}
       propertyPath: presetSelector
       value: 
-      objectReference: {fileID: 6791789481819626878}
+      objectReference: {fileID: 3123988434302647535}
     - target: {fileID: 625155129355952846, guid: fa7fddb2cfa14c44496023782c1687c3,
         type: 3}
       propertyPath: blockGroup
@@ -1805,7 +1951,7 @@ PrefabInstance:
         type: 3}
       propertyPath: octaveSelector
       value: 
-      objectReference: {fileID: 4371264260256531584}
+      objectReference: {fileID: 2559948647001073849}
     - target: {fileID: 625155129355952846, guid: fa7fddb2cfa14c44496023782c1687c3,
         type: 3}
       propertyPath: sequenceNumber
@@ -1899,7 +2045,7 @@ PrefabInstance:
         type: 3}
       propertyPath: presetSelector
       value: 
-      objectReference: {fileID: 6791789481819626878}
+      objectReference: {fileID: 3123988434302647535}
     - target: {fileID: 625155129355952846, guid: fa7fddb2cfa14c44496023782c1687c3,
         type: 3}
       propertyPath: blockGroup
@@ -1924,7 +2070,7 @@ PrefabInstance:
         type: 3}
       propertyPath: octaveSelector
       value: 
-      objectReference: {fileID: 4371264260256531584}
+      objectReference: {fileID: 2559948647001073849}
     - target: {fileID: 625155129355952846, guid: fa7fddb2cfa14c44496023782c1687c3,
         type: 3}
       propertyPath: sequenceNumber
@@ -2018,7 +2164,7 @@ PrefabInstance:
         type: 3}
       propertyPath: presetSelector
       value: 
-      objectReference: {fileID: 6791789481819626878}
+      objectReference: {fileID: 3123988434302647535}
     - target: {fileID: 625155129355952846, guid: fa7fddb2cfa14c44496023782c1687c3,
         type: 3}
       propertyPath: blockGroup
@@ -2043,7 +2189,7 @@ PrefabInstance:
         type: 3}
       propertyPath: octaveSelector
       value: 
-      objectReference: {fileID: 4371264260256531584}
+      objectReference: {fileID: 2559948647001073849}
     - target: {fileID: 625155129355952846, guid: fa7fddb2cfa14c44496023782c1687c3,
         type: 3}
       propertyPath: sequenceNumber
@@ -2137,7 +2283,7 @@ PrefabInstance:
         type: 3}
       propertyPath: presetSelector
       value: 
-      objectReference: {fileID: 6791789481819626878}
+      objectReference: {fileID: 3123988434302647535}
     - target: {fileID: 625155129355952846, guid: fa7fddb2cfa14c44496023782c1687c3,
         type: 3}
       propertyPath: blockGroup
@@ -2162,7 +2308,7 @@ PrefabInstance:
         type: 3}
       propertyPath: octaveSelector
       value: 
-      objectReference: {fileID: 4371264260256531584}
+      objectReference: {fileID: 2559948647001073849}
     - target: {fileID: 625155129355952846, guid: fa7fddb2cfa14c44496023782c1687c3,
         type: 3}
       propertyPath: sequenceNumber
@@ -2256,7 +2402,7 @@ PrefabInstance:
         type: 3}
       propertyPath: presetSelector
       value: 
-      objectReference: {fileID: 6791789481819626878}
+      objectReference: {fileID: 3123988434302647535}
     - target: {fileID: 625155129355952846, guid: fa7fddb2cfa14c44496023782c1687c3,
         type: 3}
       propertyPath: blockGroup
@@ -2281,7 +2427,7 @@ PrefabInstance:
         type: 3}
       propertyPath: octaveSelector
       value: 
-      objectReference: {fileID: 4371264260256531584}
+      objectReference: {fileID: 2559948647001073849}
     - target: {fileID: 625155129355952846, guid: fa7fddb2cfa14c44496023782c1687c3,
         type: 3}
       propertyPath: sequenceNumber
@@ -2375,7 +2521,7 @@ PrefabInstance:
         type: 3}
       propertyPath: presetSelector
       value: 
-      objectReference: {fileID: 6791789481819626878}
+      objectReference: {fileID: 3123988434302647535}
     - target: {fileID: 625155129355952846, guid: fa7fddb2cfa14c44496023782c1687c3,
         type: 3}
       propertyPath: blockGroup
@@ -2400,7 +2546,7 @@ PrefabInstance:
         type: 3}
       propertyPath: octaveSelector
       value: 
-      objectReference: {fileID: 4371264260256531584}
+      objectReference: {fileID: 2559948647001073849}
     - target: {fileID: 625155129355952846, guid: fa7fddb2cfa14c44496023782c1687c3,
         type: 3}
       propertyPath: oneEdgeThreshold
@@ -2489,7 +2635,7 @@ PrefabInstance:
         type: 3}
       propertyPath: presetSelector
       value: 
-      objectReference: {fileID: 6791789481819626878}
+      objectReference: {fileID: 3123988434302647535}
     - target: {fileID: 625155129355952846, guid: fa7fddb2cfa14c44496023782c1687c3,
         type: 3}
       propertyPath: blockGroup
@@ -2514,7 +2660,7 @@ PrefabInstance:
         type: 3}
       propertyPath: octaveSelector
       value: 
-      objectReference: {fileID: 4371264260256531584}
+      objectReference: {fileID: 2559948647001073849}
     - target: {fileID: 625155129355952846, guid: fa7fddb2cfa14c44496023782c1687c3,
         type: 3}
       propertyPath: sequenceNumber
@@ -2608,7 +2754,7 @@ PrefabInstance:
         type: 3}
       propertyPath: presetSelector
       value: 
-      objectReference: {fileID: 6791789481819626878}
+      objectReference: {fileID: 3123988434302647535}
     - target: {fileID: 625155129355952846, guid: fa7fddb2cfa14c44496023782c1687c3,
         type: 3}
       propertyPath: blockGroup
@@ -2633,7 +2779,7 @@ PrefabInstance:
         type: 3}
       propertyPath: octaveSelector
       value: 
-      objectReference: {fileID: 4371264260256531584}
+      objectReference: {fileID: 2559948647001073849}
     - target: {fileID: 625155129355952846, guid: fa7fddb2cfa14c44496023782c1687c3,
         type: 3}
       propertyPath: sequenceNumber
@@ -2727,7 +2873,7 @@ PrefabInstance:
         type: 3}
       propertyPath: presetSelector
       value: 
-      objectReference: {fileID: 6791789481819626878}
+      objectReference: {fileID: 3123988434302647535}
     - target: {fileID: 625155129355952846, guid: fa7fddb2cfa14c44496023782c1687c3,
         type: 3}
       propertyPath: blockGroup
@@ -2752,7 +2898,7 @@ PrefabInstance:
         type: 3}
       propertyPath: octaveSelector
       value: 
-      objectReference: {fileID: 4371264260256531584}
+      objectReference: {fileID: 2559948647001073849}
     - target: {fileID: 625155129355952846, guid: fa7fddb2cfa14c44496023782c1687c3,
         type: 3}
       propertyPath: sequenceNumber
@@ -2846,7 +2992,7 @@ PrefabInstance:
         type: 3}
       propertyPath: presetSelector
       value: 
-      objectReference: {fileID: 6791789481819626878}
+      objectReference: {fileID: 3123988434302647535}
     - target: {fileID: 625155129355952846, guid: fa7fddb2cfa14c44496023782c1687c3,
         type: 3}
       propertyPath: blockGroup
@@ -2871,7 +3017,7 @@ PrefabInstance:
         type: 3}
       propertyPath: octaveSelector
       value: 
-      objectReference: {fileID: 4371264260256531584}
+      objectReference: {fileID: 2559948647001073849}
     - target: {fileID: 625155129355952846, guid: fa7fddb2cfa14c44496023782c1687c3,
         type: 3}
       propertyPath: sequenceNumber
@@ -2965,7 +3111,7 @@ PrefabInstance:
         type: 3}
       propertyPath: presetSelector
       value: 
-      objectReference: {fileID: 6791789481819626878}
+      objectReference: {fileID: 3123988434302647535}
     - target: {fileID: 625155129355952846, guid: fa7fddb2cfa14c44496023782c1687c3,
         type: 3}
       propertyPath: blockGroup
@@ -2990,7 +3136,7 @@ PrefabInstance:
         type: 3}
       propertyPath: octaveSelector
       value: 
-      objectReference: {fileID: 4371264260256531584}
+      objectReference: {fileID: 2559948647001073849}
     - target: {fileID: 625155129355952846, guid: fa7fddb2cfa14c44496023782c1687c3,
         type: 3}
       propertyPath: sequenceNumber
@@ -3084,7 +3230,7 @@ PrefabInstance:
         type: 3}
       propertyPath: presetSelector
       value: 
-      objectReference: {fileID: 6791789481819626878}
+      objectReference: {fileID: 3123988434302647535}
     - target: {fileID: 625155129355952846, guid: fa7fddb2cfa14c44496023782c1687c3,
         type: 3}
       propertyPath: blockGroup
@@ -3109,7 +3255,7 @@ PrefabInstance:
         type: 3}
       propertyPath: octaveSelector
       value: 
-      objectReference: {fileID: 4371264260256531584}
+      objectReference: {fileID: 2559948647001073849}
     - target: {fileID: 625155129355952846, guid: fa7fddb2cfa14c44496023782c1687c3,
         type: 3}
       propertyPath: sequenceNumber
