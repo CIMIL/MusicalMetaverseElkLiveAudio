@@ -40,7 +40,7 @@ public class BlockGroup : MonoBehaviour
 
     public void SetVibrato(float normalizedValue)
     {
-        var message = new OSCMessage("/parameter/x_Mda_jx10/Vibrato_");
+        var message = new OSCMessage("/parameter/x_mda_jx10/Vibrato_");
         message.AddValue(OSCValue.Float(normalizedValue));
         
         transmitter.Send(message);
@@ -48,7 +48,7 @@ public class BlockGroup : MonoBehaviour
 
     public void SetPreset(int id)
     {
-        var message = new OSCMessage("/program/x_Mda_jx10");
+        var message = new OSCMessage("/program/x_mda_jx10");
         message.AddValue(OSCValue.Int(id));
         
         transmitter.Send(message);
