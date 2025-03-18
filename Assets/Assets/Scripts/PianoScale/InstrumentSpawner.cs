@@ -12,7 +12,7 @@ public class InstrumentSpawner : MonoBehaviour
     public NetworkScene scene;
 
     private GameObject userInstrument;
-    protected NetworkSpawnManager manager;
+    private NetworkSpawnManager manager;
 
     void Start()
     {
@@ -22,26 +22,30 @@ public class InstrumentSpawner : MonoBehaviour
 
     private void OnSpawned(GameObject go, IRoom room, IPeer peer, NetworkSpawnOrigin origin)
     {
-        if (go.CompareTag("Instrument") && origin == NetworkSpawnOrigin.Remote)
+        if (go.CompareTag("Instrument") && origin == NetworkSpawnOrigin.Local)
         {
+            userInstrument = go;
             SyncedTransform st = go.GetComponent<SyncedTransform>();
             st.Start();
-            st.SyncLastPosition();
-            
+            spawnPoint.GetPositionAndRotation(out var pos, out var rot);
+            st.transform.SetPositionAndRotation(pos, rot);
+        }
+        else if (go.CompareTag("Instrument") && origin == NetworkSpawnOrigin.Remote)
+        {
             go.GetComponent<BlockGroup>().Disable();
         }
     }
     public void Spawn(int index)
     {
-        if (!manager)
-            return;
+        if (manager)
+        {
+            if (userInstrument)
+            {
+                manager.Despawn(userInstrument);
+            }
 
-        // TODO: Fix a bug where once you respawn all instruments at least once, their position is merged together
-        if (userInstrument)
-            manager.Despawn(userInstrument);
-
-        userInstrument = manager.SpawnWithPeerScope(manager.catalogue.prefabs[index]);
-        spawnPoint.GetPositionAndRotation(out var pos, out var rot);
-        userInstrument.transform.SetPositionAndRotation(pos, rot);
+            manager.SpawnWithRoomScope(manager.catalogue.prefabs[index]);
+            
+        }
     }
 }
