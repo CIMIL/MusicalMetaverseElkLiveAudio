@@ -22,6 +22,7 @@ public class DrumstickSpawner : MonoBehaviour
     {
         if (go.CompareTag("Drumstick") && origin == NetworkSpawnOrigin.Local)
         {
+            
             SyncedTransform st = go.GetComponent<SyncedTransform>();
             st.Start();
             spawnPoint.GetPositionAndRotation(out var pos, out var rot);
@@ -31,6 +32,11 @@ public class DrumstickSpawner : MonoBehaviour
             d.Start();
             d.grabbedBy = NetworkScene.Find(this).Id;
             d.SendUpdateMessage();
+        } else if (go.CompareTag("Drumstick") && origin == NetworkSpawnOrigin.Remote)
+        {
+            SyncedTransform st = go.GetComponent<SyncedTransform>();
+            st.Start();
+            st.SyncLastPosition();
         }
     }
 

@@ -33,6 +33,10 @@ public class InstrumentSpawner : MonoBehaviour
         else if (go.CompareTag("Instrument") && origin == NetworkSpawnOrigin.Remote)
         {
             go.GetComponent<BlockGroup>().Disable();
+            
+            SyncedTransform st = go.GetComponent<SyncedTransform>();
+            st.Start();
+            st.SyncLastPosition();
         }
     }
     public void Spawn(int index)
