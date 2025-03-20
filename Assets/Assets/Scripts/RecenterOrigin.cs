@@ -1,32 +1,32 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Ubiq.Logging;
 using Unity.XR.CoreUtils;
 using UnityEngine;
 
 public class RecenterOrigin : MonoBehaviour
 {
     [SerializeField] private Transform spawnPosition;
-    bool once = true;
     private XROrigin origin;
-    
+    private LogEmitter debugLogEmitter;
+
     private void Start()
     {
         origin = GetComponent<XROrigin>();
+        debugLogEmitter = new ExperimentLogEmitter(this);
+        StartCoroutine(Recenter());
     }
 
-    private void Update()
+    private IEnumerator Recenter()
     {
-        if (!once)
-            return;
-        
-        origin.MoveCameraToWorldLocation(spawnPosition.position);
-        origin.MatchOriginUpCameraForward(spawnPosition.up, spawnPosition.forward);
-        
-        if (origin.Camera.transform.position == spawnPosition.position)
+        int times = 0;
+        while (times < 2)
         {
-            once = false;
+            origin.MoveCameraToWorldLocation(spawnPosition.position);
+            origin.MatchOriginUpCameraForward(spawnPosition.up, spawnPosition.forward);
+            times++;
+            yield return null;
         }
-
     }
 }
