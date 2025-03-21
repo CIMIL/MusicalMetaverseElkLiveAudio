@@ -1,4 +1,5 @@
 ﻿using System;
+using Ubiq.Messaging;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -8,10 +9,13 @@ public class OctaveSelector : MonoBehaviour
     
     [NonSerialized]
     public UnityEvent OnOctaveChange;
+
+    private NetworkContext context;
     
     private void Awake()
     {
         OnOctaveChange = new UnityEvent();
+        context = NetworkScene.Register(this);
     }
     
     public void NextOctave()
@@ -19,6 +23,7 @@ public class OctaveSelector : MonoBehaviour
         if (octave >= 10) return;
     
         octave++;
+        context.SendJson(new Message() { Octave = octave });
         OnOctaveChange.Invoke();
     }
 
@@ -28,5 +33,16 @@ public class OctaveSelector : MonoBehaviour
     
         octave--;
         OnOctaveChange.Invoke();
+    }
+    
+    public void ProcessMessage(ReferenceCountedSceneGraphMessage message)
+    {
+        octave = message.FromJson<Message>().Octave;
+        OnOctaveChange.Invoke();
+    }
+
+    private struct Message
+    {
+        public int Octave;
     }
 }

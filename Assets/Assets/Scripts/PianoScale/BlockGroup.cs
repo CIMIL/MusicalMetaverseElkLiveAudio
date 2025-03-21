@@ -8,6 +8,8 @@ using UnityEngine.Serialization;
 
 public class BlockGroup : MonoBehaviour
 {
+    public bool spectatorMode = false;
+    
     [SerializeField]
     private OSCTransmitter transmitter;
     
@@ -18,17 +20,17 @@ public class BlockGroup : MonoBehaviour
 
     public void Disable()
     {
-        var colliders = GetComponentsInChildren<BoxCollider>();
-        foreach (var boxCollider in colliders)
-           boxCollider.enabled = false;
+        spectatorMode = true;
         
-        GetComponentInChildren<OctaveSelector>().gameObject.SetActive(false);
-        GetComponentInChildren<PresetSelector>().gameObject.SetActive(false);
-        
+        GetComponentInChildren<OctaveSelector>().transform.GetChild(0).gameObject.SetActive(false);
+        GetComponentInChildren<PresetSelector>().transform.GetChild(0).gameObject.SetActive(false);
     }
 
     public void SendNote(bool play, int note)
     {
+        if (spectatorMode)
+            return;
+        
         var message = new OSCMessage("/keyboard_event/x_source");
         message.AddValue(OSCValue.String(play ? "note_on" : "note_off"));
         message.AddValue(OSCValue.Int(0));
