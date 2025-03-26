@@ -39,6 +39,7 @@ public class OctaveSelector : MonoBehaviour, INetworkSpawnable
         if (octave <= 0) return;
     
         octave--;
+        context.SendJson(new Message() { Octave = octave });
         OnOctaveChange.Invoke();
     }
     
