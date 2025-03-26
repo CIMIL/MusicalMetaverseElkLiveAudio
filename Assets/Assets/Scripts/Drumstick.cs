@@ -1,22 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using Ubiq.Messaging;
+using Ubiq.Spawning;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
-public class Drumstick : MonoBehaviour
+public class Drumstick : MonoBehaviour, INetworkSpawnable
 {
+    
+    public NetworkId NetworkId { get; set; }
+    private NetworkContext context;
     
     private XRGrabInteractable grabInteractable;
     public NetworkId grabbedBy;
-    private NetworkContext context;
     
     public void Start()
     {
         grabInteractable = GetComponent<XRGrabInteractable>();
         grabInteractable.selectEntered.AddListener(OnSelectEntered);
         grabInteractable.selectExited.AddListener(OnSelectExited);
-        
+
+        NetworkId = NetworkId.Create(this);
         context = NetworkScene.Register(this);
     }
     

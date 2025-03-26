@@ -414,6 +414,7 @@ GameObject:
   - component: {fileID: 8651001130783895892}
   - component: {fileID: 6722757753100137756}
   - component: {fileID: 7469619153833643130}
+  - component: {fileID: 4506960516693609489}
   m_Layer: 0
   m_Name: Piano Scale
   m_TagString: Instrument
@@ -655,6 +656,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spectatorMode: 0
   transmitter: {fileID: 0}
+--- !u!114 &4506960516693609489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2441878115936072151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1c38e75cad308646bb665565f79b580, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: {r: 0, g: 0, b: 0, a: 1}
 --- !u!1 &3229635561007853819
 GameObject:
   m_ObjectHideFlags: 0

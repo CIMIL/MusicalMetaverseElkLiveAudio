@@ -1,9 +1,11 @@
 using System;
 using Ubiq.Messaging;
+using Ubiq.Spawning;
 using UnityEngine;
 
-public class SyncedTransform : MonoBehaviour
+public class SyncedTransform : MonoBehaviour, INetworkSpawnable
 {
+    public NetworkId NetworkId { get; set; }
     private NetworkContext context;
     private Vector3 lastPosition;
     
@@ -12,6 +14,7 @@ public class SyncedTransform : MonoBehaviour
 
     public void Start()
     {
+        NetworkId = NetworkId.Create(this);
         context = NetworkScene.Register(this);
     }
 

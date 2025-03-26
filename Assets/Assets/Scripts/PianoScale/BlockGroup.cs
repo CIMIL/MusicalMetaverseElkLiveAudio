@@ -1,6 +1,7 @@
 using System;
 using extOSC;
 using Ubiq.Messaging;
+using Ubiq.XRI;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
@@ -21,9 +22,14 @@ public class BlockGroup : MonoBehaviour
     public void Disable()
     {
         spectatorMode = true;
+
+        OctaveSelector octaveSelector = GetComponentInChildren<OctaveSelector>();
+        octaveSelector.GetComponent<MenuAdapterXRI>().enabled = false;
+        octaveSelector.transform.GetChild(0).gameObject.SetActive(false);
         
-        GetComponentInChildren<OctaveSelector>().transform.GetChild(0).gameObject.SetActive(false);
-        GetComponentInChildren<PresetSelector>().transform.GetChild(0).gameObject.SetActive(false);
+        PresetSelector presetSelector = GetComponentInChildren<PresetSelector>();
+        presetSelector.GetComponent<MenuAdapterXRI>().enabled = false;
+        presetSelector.transform.GetChild(0).gameObject.SetActive(false);
     }
 
     public void SendNote(bool play, int note)

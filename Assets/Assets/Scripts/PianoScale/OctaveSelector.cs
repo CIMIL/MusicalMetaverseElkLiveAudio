@@ -1,20 +1,27 @@
 ﻿using System;
 using Ubiq.Messaging;
+using Ubiq.Spawning;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class OctaveSelector : MonoBehaviour
+public class OctaveSelector : MonoBehaviour, INetworkSpawnable
 {
     public int octave = 4;
     
     [NonSerialized]
     public UnityEvent OnOctaveChange;
 
+    public NetworkId NetworkId { get; set; }
     private NetworkContext context;
     
     private void Awake()
     {
         OnOctaveChange = new UnityEvent();
+    }
+
+    private void Start()
+    {
+        NetworkId = NetworkId.Create(this);
         context = NetworkScene.Register(this);
     }
     
