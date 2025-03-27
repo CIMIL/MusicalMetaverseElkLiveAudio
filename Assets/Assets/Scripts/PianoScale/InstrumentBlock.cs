@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Ubiq.Messaging;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -39,6 +40,12 @@ public class InstrumentBlock : MonoBehaviour
     {
         if (other.gameObject.transform.CompareTag(interactableTag))
         {
+            Drumstick drumstick = other.gameObject.GetComponent<Drumstick>();
+            if (drumstick.grabbedBy != NetworkScene.Find(this).Id)
+            {
+                return;
+            }
+            
             pressed = true;
             StartCoroutine(SmoothVibrato(other.gameObject));
             blockGroup.SendNote(true, note);
@@ -49,6 +56,12 @@ public class InstrumentBlock : MonoBehaviour
     {
         if (other.gameObject.transform.CompareTag(interactableTag))
         {
+            Drumstick drumstick = other.gameObject.GetComponent<Drumstick>();
+            if (drumstick.grabbedBy != NetworkScene.Find(this).Id)
+            {
+                return;
+            }
+            
             pressed = false;
             ApplyColor(baseColor, zeroEdgeThreshold);
             blockGroup.SetVibrato(0f);

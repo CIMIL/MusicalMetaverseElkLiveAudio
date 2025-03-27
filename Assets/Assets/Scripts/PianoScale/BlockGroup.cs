@@ -23,6 +23,11 @@ public class BlockGroup : MonoBehaviour
     {
         spectatorMode = true;
 
+        foreach (InstrumentBlock block in GetComponentsInChildren<InstrumentBlock>())
+        {
+            block.GetComponent<BlockInteractionLogger>().enabled = false;   
+        }
+
         OctaveSelector octaveSelector = GetComponentInChildren<OctaveSelector>();
         octaveSelector.GetComponent<MenuAdapterXRI>().enabled = false;
         octaveSelector.transform.GetChild(0).gameObject.SetActive(false);
