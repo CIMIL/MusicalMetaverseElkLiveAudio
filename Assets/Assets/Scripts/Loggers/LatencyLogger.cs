@@ -8,11 +8,17 @@ using EventType = Ubiq.Logging.EventType;
 public class LatencyLogger : MonoBehaviour
 {
     private LogEmitter logEmitter;
-    
+    private LatencyMeter latencyMeter;
 
     private void Start()
     {
         logEmitter = new ApplicationLogEmitter(this);
+        latencyMeter = GetComponent<LatencyMeter>();
+    }
+
+    private void Update()
+    {
+        latencyMeter.MeasurePeerLatencies();
     }
 
     public void WriteLog(LatencyMeter.Measurement measurement)
@@ -27,15 +33,15 @@ public class LatencyLogger : MonoBehaviour
 
     private struct LogData
     {
-        public NetworkId Source;
-        public NetworkId Destination;
+        public string Source;
+        public string Destination;
         public float Time;
         public float FrameTime;
 
         public LogData(NetworkId source, NetworkId destination, float time, float frameTime)
         {
-            Source = source;
-            Destination = destination;
+            Source = source.ToString();
+            Destination = destination.ToString();
             Time = time;
             FrameTime = frameTime;
         }

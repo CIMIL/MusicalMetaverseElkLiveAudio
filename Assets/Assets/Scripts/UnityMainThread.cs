@@ -6,12 +6,12 @@ using System;
 
 internal class UnityMainThread : MonoBehaviour
 {
-    internal static UnityMainThread wkr;
-    Queue<Action> jobs = new Queue<Action>();
+    internal static UnityMainThread Wkr;
+    private Queue<Action> jobs = new Queue<Action>();
 
     void Awake()
     {
-        wkr = this;
+        Wkr = this;
     }
 
     void Update()

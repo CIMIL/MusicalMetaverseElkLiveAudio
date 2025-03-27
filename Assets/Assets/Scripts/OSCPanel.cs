@@ -14,10 +14,10 @@ public class OSCPanel : MonoBehaviour
         receiver = GetComponent<OSCReceiver>();
         receiver.Bind("/keyboard_event/x_source", OnMessageReceive);
     }
-        
-    public void OnMessageReceive(OSCMessage message)
+
+    private void OnMessageReceive(OSCMessage message)
     {
-        UnityMainThread.wkr.AddJob(() =>
+        UnityMainThread.Wkr.AddJob(() =>
         {
             textfield.text = message.Values[0].StringValue;
         });
