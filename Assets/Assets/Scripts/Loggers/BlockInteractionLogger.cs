@@ -31,7 +31,9 @@ public class BlockInteractionLogger : MonoBehaviour
         
         // local tells me if the drumstick that is playing a block is grabbed by you (local) or by someone else (remote)
         var local = other.gameObject.GetComponentInParent<Drumstick>().grabbedBy == NetworkScene.Find(this).Id;
-        if (!local) return;
+        if (!local)
+            return;
+        
         var e = new EventData("Entered",
             block.note,
             presetSelector.GetActivePreset());
