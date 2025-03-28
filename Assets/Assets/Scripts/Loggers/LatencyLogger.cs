@@ -12,7 +12,7 @@ public class LatencyLogger : MonoBehaviour
 
     private void Start()
     {
-        logEmitter = new ApplicationLogEmitter(this);
+        logEmitter = new InfoLogEmitter(this);
         latencyMeter = GetComponent<LatencyMeter>();
     }
 

@@ -12,7 +12,6 @@ public class BlockInteractionLogger : MonoBehaviour
     [SerializeField] private PresetSelector presetSelector;
     private InstrumentBlock block;
     private LogEmitter interactions;
-    
 
     private void Start()
     {
@@ -27,30 +26,38 @@ public class BlockInteractionLogger : MonoBehaviour
          holding the drumstick. There's an edge case to be found here: a block can be triggered by a drumstick even
          if nobody is holding it, by moving the block itself. */
 
-        if (!other.gameObject.transform.CompareTag(block.interactableTag)) return;
-        
+        if (this.isActiveAndEnabled && other.gameObject.transform.CompareTag(block.interactableTag))
+        {
+            var local = other.gameObject.GetComponentInParent<Drumstick>().grabbedBy == NetworkScene.Find(this).Id;
+
+            if (!local)
+                return;
+
+            var e = new EventData("Entered",
+                block.note,
+                presetSelector.GetActivePreset());
+
+            interactions?.Log("Block Interaction", e);
+        }
+
         // local tells me if the drumstick that is playing a block is grabbed by you (local) or by someone else (remote)
-        var local = other.gameObject.GetComponentInParent<Drumstick>().grabbedBy == NetworkScene.Find(this).Id;
-        if (!local)
-            return;
-        
-        var e = new EventData("Entered",
-            block.note,
-            presetSelector.GetActivePreset());
-        
-        interactions?.Log("Block Interaction", e);
     }
 
     private void OnTriggerExit(UnityEngine.Collider other)
     {
-        if (!other.gameObject.transform.CompareTag(block.interactableTag)) return;
+        if (this.isActiveAndEnabled && other.gameObject.transform.CompareTag(block.interactableTag))
+        {
+            var local = other.gameObject.GetComponentInParent<Drumstick>().grabbedBy == NetworkScene.Find(this).Id;
 
-        var local = other.gameObject.GetComponentInParent<Drumstick>().grabbedBy == NetworkScene.Find(this).Id;
-        var e = new EventData("Exited", 
-            block.note,
-            presetSelector.GetActivePreset());
-        
-        interactions?.Log("Block Interaction", e);
+            if (!local)
+                return;
+
+            var e = new EventData("Exited",
+                block.note,
+                presetSelector.GetActivePreset());
+
+            interactions?.Log("Block Interaction", e);
+        }
     }
     private struct EventData
     {

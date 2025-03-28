@@ -48,7 +48,7 @@ public class MainCameraLogger : MonoBehaviour
 
     public void Start()
     {
-        logEmitter = new InfoLogEmitter(this);
+        logEmitter = new ExperimentLogEmitter(this);
         InvokeRepeating(nameof(LogVector), 0.0f, 0.3f);
     }
     

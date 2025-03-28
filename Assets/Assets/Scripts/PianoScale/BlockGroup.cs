@@ -23,9 +23,10 @@ public class BlockGroup : MonoBehaviour
     {
         spectatorMode = true;
 
-        foreach (InstrumentBlock block in GetComponentsInChildren<InstrumentBlock>())
+        // Disable logging for interactions triggered by the player on other player's pianos
+        foreach (BlockInteractionLogger blockLogger in GetComponentsInChildren<BlockInteractionLogger>())
         {
-            block.GetComponent<BlockInteractionLogger>().enabled = false;   
+            blockLogger.enabled = false;   
         }
 
         OctaveSelector octaveSelector = GetComponentInChildren<OctaveSelector>();
