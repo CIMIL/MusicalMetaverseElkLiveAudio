@@ -1100,6 +1100,7 @@ MonoBehaviour:
   presets: {fileID: 11400000, guid: cd14dd0074988a643b734fec89d9face, type: 2}
   blockGroup: {fileID: 7469619153833643130}
   panelText: {fileID: 7400696889102412205}
+  logging: 1
 --- !u!1 &5099038016645548051
 GameObject:
   m_ObjectHideFlags: 0
@@ -1424,6 +1425,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   octave: 4
+  logging: 1
 --- !u!1 &6173931671813724816
 GameObject:
   m_ObjectHideFlags: 0

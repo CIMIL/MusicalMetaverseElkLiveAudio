@@ -1,4 +1,5 @@
 ﻿using System;
+using Ubiq.Logging;
 using Ubiq.Messaging;
 using Ubiq.Spawning;
 using UnityEngine;
@@ -6,12 +7,15 @@ using UnityEngine.Events;
 
 public class OctaveSelector : MonoBehaviour, INetworkSpawnable
 {
+    public NetworkId NetworkId { get; set; }
     public int octave = 4;
     
     [NonSerialized]
     public UnityEvent OnOctaveChange;
 
-    public NetworkId NetworkId { get; set; }
+    [SerializeField] private bool logging;
+    
+    private LogEmitter logEmitter;
     private NetworkContext context;
     
     private void Awake()
@@ -23,6 +27,9 @@ public class OctaveSelector : MonoBehaviour, INetworkSpawnable
     {
         NetworkId = NetworkId.Create(this);
         context = NetworkScene.Register(this);
+        
+        if (logging)
+            logEmitter = new ExperimentLogEmitter(this);
     }
     
     public void NextOctave()
@@ -32,6 +39,9 @@ public class OctaveSelector : MonoBehaviour, INetworkSpawnable
         octave++;
         context.SendJson(new Message() { Octave = octave });
         OnOctaveChange.Invoke();
+        
+        if(logging)
+            Log();
     }
 
     public void PreviousOctave()
@@ -41,6 +51,9 @@ public class OctaveSelector : MonoBehaviour, INetworkSpawnable
         octave--;
         context.SendJson(new Message() { Octave = octave });
         OnOctaveChange.Invoke();
+
+        if (logging)
+            Log();
     }
     
     public void ProcessMessage(ReferenceCountedSceneGraphMessage message)
@@ -49,8 +62,24 @@ public class OctaveSelector : MonoBehaviour, INetworkSpawnable
         OnOctaveChange.Invoke();
     }
 
+    private void Log()
+    {
+        var octaveData = new OctaveData(octave);
+        logEmitter.Log("Octave Changed", octaveData);
+    }
+
     private struct Message
     {
         public int Octave;
+    }
+
+    private struct OctaveData
+    {
+        public int Octave;
+
+        public OctaveData(int octave)
+        {
+            Octave = octave;
+        }
     }
 }

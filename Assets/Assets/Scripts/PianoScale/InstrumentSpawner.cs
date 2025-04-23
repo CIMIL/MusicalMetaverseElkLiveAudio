@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using extOSC;
+using Ubiq.Logging;
 using Ubiq.Messaging;
 using Ubiq.Rooms;
 using Ubiq.Spawning;
@@ -11,6 +12,9 @@ public class InstrumentSpawner : MonoBehaviour
     public Transform spawnPoint;
     public NetworkScene scene;
 
+    [SerializeField] private bool logging;
+
+    private LogEmitter logEmitter;
     private GameObject userInstrument;
     private NetworkSpawnManager manager;
 
@@ -18,6 +22,9 @@ public class InstrumentSpawner : MonoBehaviour
     {
         manager = scene.GetComponentInChildren<NetworkSpawnManager>();
         manager.OnSpawned.AddListener(OnSpawned);
+
+        if (logging)
+            logEmitter = new ExperimentLogEmitter(this);
     }
 
     private void OnSpawned(GameObject go, IRoom room, IPeer peer, NetworkSpawnOrigin origin)
@@ -53,8 +60,9 @@ public class InstrumentSpawner : MonoBehaviour
             else
             {
                 manager.SpawnWithRoomScope(manager.catalogue.prefabs[index]);
+                if (logging)
+                    logEmitter.Log("Piano Spawned");
             }
-            
         }
     }
 }
