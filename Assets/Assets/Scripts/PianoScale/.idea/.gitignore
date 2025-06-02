@@ -2,9 +2,9 @@
 /shelf/
 /workspace.xml
 # Rider ignored files
-/.idea.RythmUs - Ubiq Musical Sandbox.iml
 /modules.xml
 /contentModel.xml
+/.idea.PianoScale.iml
 /projectSettingsUpdater.xml
 # Editor-based HTTP Client requests
 /httpRequests/

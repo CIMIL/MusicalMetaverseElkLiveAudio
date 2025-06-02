@@ -1,3 +1,4 @@
-rep "RythmUs - Ubiq Musical Sandbox@Ovidiu_VCS@cloud"
+repository "RythmUs - Ubiq Musical Sandbox@Ovidiu_VCS@cloud"
   path "/"
-    smartbranch "/main"
+    br "/main"
+    co "/main"
