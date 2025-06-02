@@ -43,6 +43,7 @@ public class InstrumentBlock : MonoBehaviour
             pressed = true;
             StartCoroutine(SmoothVibrato(other.gameObject));
             blockGroup.SendNote(true, note);
+            Debug.Log(note);
         }
     }
 
